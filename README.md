@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Portfolio - React Dashboard Project
 
 This is Sam's Portfolio and thank you for coming by.
@@ -44,3 +45,7 @@ This project can be easily deployed to:
 ## License
 
 MIT License
+=======
+# house_value_estimator
+This is a platform to help us keep track of the housing value and predict the upcoming value raised.
+>>>>>>> 37edfab4fc82e01f9f77a9fb6e0796a8717744bf
