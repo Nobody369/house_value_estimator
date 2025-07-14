@@ -15,7 +15,7 @@ import {
   Chip,
   Paper,
   Fade,
-  CircularProgress
+
 } from '@mui/material'
 import {
   CloudUpload,
@@ -92,7 +92,6 @@ const CSVImporter: React.FC = () => {
     setIsDragOver(false)
     const files = event.dataTransfer.files
     if (files.length > 0) {
-      const file = files[0]
       if (fileInputRef.current) {
         fileInputRef.current.files = files
         handleFileUpload({ target: { files } } as any)

@@ -9,12 +9,12 @@ import {
   Typography, 
   Button, 
   Alert, 
-  Paper,
+
   CircularProgress,
   Card,
   CardContent
 } from '@mui/material'
-import { CloudUpload, Analytics } from '@mui/icons-material'
+import { Analytics } from '@mui/icons-material'
 import CSVImporter from './CSVImporter'
 import DataFilters from './DataFilters'
 import DataVisualization from './DataTable'

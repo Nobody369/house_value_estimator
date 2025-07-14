@@ -35,16 +35,17 @@ const COLORS = [
 ]
 
 const MultiLineChart: React.FC<MultiLineChartProps> = ({ data, dataKey, title }) => {
-  const { selectedRegions } = useSelector((state: RootState) => state.regions)
+  const { filters } = useSelector((state: RootState) => state.csv)
 
-  // Filter data to only include selected regions
+  // For single region analysis, we'll use the selected region from filters
+  const selectedRegion = filters.regionName
+
+  // Filter data to only include the selected region
   const filteredData = data.map(item => {
     const filteredItem: DataPoint = { date: item.date }
-    selectedRegions.forEach(region => {
-      if (item[region] !== undefined) {
-        filteredItem[region] = item[region]
-      }
-    })
+    if (selectedRegion && item[selectedRegion] !== undefined) {
+      filteredItem[selectedRegion] = item[selectedRegion]
+    }
     return filteredItem
   })
 
@@ -52,9 +53,9 @@ const MultiLineChart: React.FC<MultiLineChartProps> = ({ data, dataKey, title })
     <div className="bg-white p-6 rounded-lg shadow-md">
       <h2 className="text-xl font-semibold text-gray-800 mb-4">{title}</h2>
       
-      {selectedRegions.length === 0 ? (
+      {!selectedRegion ? (
         <div className="flex items-center justify-center h-64 text-gray-500">
-          <p>Please select at least one region to view the chart</p>
+          <p>Please select a region to view the chart</p>
         </div>
       ) : (
         <ResponsiveContainer width="100%" height={400}>
@@ -88,18 +89,18 @@ const MultiLineChart: React.FC<MultiLineChartProps> = ({ data, dataKey, title })
             />
             <Legend />
             
-            {selectedRegions.map((region, index) => (
+            {selectedRegion && (
               <Line
-                key={region}
+                key={selectedRegion}
                 type="monotone"
-                dataKey={region}
-                stroke={COLORS[index % COLORS.length]}
+                dataKey={selectedRegion}
+                stroke={COLORS[0]}
                 strokeWidth={2}
                 dot={{ r: 4 }}
                 activeDot={{ r: 6 }}
-                name={region}
+                name={selectedRegion}
               />
-            ))}
+            )}
           </LineChart>
         </ResponsiveContainer>
       )}

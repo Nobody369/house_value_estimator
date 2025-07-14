@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { 
-  ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend,
-  LineChart, Line, BarChart, Bar, ComposedChart, Area, AreaChart, PieChart as RechartsPieChart, Cell
+  XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
+  LineChart, Line, BarChart, Bar
 } from 'recharts';
 import { useSelector } from 'react-redux';
 import type { RootState } from '../store/store';
@@ -221,17 +221,15 @@ const DataVisualization: React.FC = () => {
     });
     
     return {
-      numericData,
       numericColumns,
       marketStats,
       timeSeriesData,
       valueBreakdown,
-      selectedRegionData,
       trendAnalysis
     };
   }, [displayData, filters, data]);
 
-  const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
+  const handleTabChange = (_event: React.SyntheticEvent, newValue: number) => {
     setTabValue(newValue);
   };
 
@@ -349,7 +347,7 @@ const DataVisualization: React.FC = () => {
     );
   }
 
-  const { numericData, numericColumns, marketStats, timeSeriesData, valueBreakdown, selectedRegionData, trendAnalysis } = processedData;
+  const { numericColumns, marketStats, timeSeriesData, valueBreakdown, trendAnalysis } = processedData;
 
   return (
     <Card sx={{ 
